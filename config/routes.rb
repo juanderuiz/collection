@@ -1,3 +1,3 @@
 Rails.application.routes.draw do
-  resources :bands
+  resources :bands, only: :index
 end

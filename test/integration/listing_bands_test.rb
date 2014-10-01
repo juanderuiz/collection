@@ -11,6 +11,6 @@ class ListingBandsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
 
-    assert_equal Band.count, JSON.parse(response.body).size
+    assert_equal Band.count, json(response.body).size
   end
 end
