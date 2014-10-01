@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930114841) do
+ActiveRecord::Schema.define(version: 20141001152249) do
+
+  create_table "albums", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "band_id"
+  end
 
   create_table "bands", force: true do |t|
     t.string   "name"

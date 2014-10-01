@@ -5,6 +5,7 @@ class ListingBandsTest < ActionDispatch::IntegrationTest
   	Band.create!(name: 'Arcade Fire')
   	Band.create!(name: 'Joy Division')
   end
+  
   test 'listing bands'  do
     get '/bands'
 
