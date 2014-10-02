@@ -18,6 +18,13 @@ class BandsController < ApplicationController
   	end
   end
 
+  def destroy
+  	band = Band.find(params[:id])
+  	band.destroy!
+  	render nothing: true, status: 204
+  end
+
+  private
   def band_params
   	params.require(:band).permit(:name)
   end
