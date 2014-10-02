@@ -3,4 +3,22 @@ class BandsController < ApplicationController
   	bands = Band.all
   	render json: bands, status: 200
   end
+
+  def show
+  	band = Band.find(params[:id])
+    render json: band, status: 200
+  end
+
+  def create
+  	band = Band.new(band_params)
+  	if band.save
+  	  render json: band, status: 201, location: band
+  	else
+  	  render json: band.errors, status: 422
+  	end
+  end
+
+  def band_params
+  	params.require(:band).permit(:name)
+  end
 end

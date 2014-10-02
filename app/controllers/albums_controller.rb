@@ -3,7 +3,10 @@ class AlbumsController < ApplicationController
 
   def index
   	albums = @band.albums
-  	render json: albums, status: 200
+    respond_to do |format|
+      format.json { render json: albums, status: 200 }
+      format.xml { render xml: albums, status: 200 }
+    end
   end
 
   private

@@ -8,12 +8,21 @@ class ListingAlbumsTest < ActionDispatch::IntegrationTest
     @band = Band.create!(id: 1, name: 'Arcade Fire')
   end
 
-  test 'listing albums'  do
-    get "/bands/#{@band.id}/albums"
+  test 'listing albums in JSON' do
+    get "bands/#{@band.id}/albums", {}, { 'Accept' => 'application/json'}
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
 
     assert_equal 2, json(response.body).size
+  end
+
+  test 'listing albums in XML' do
+    get "bands/#{@band.id}/albums", {}, { 'Accept' => 'application/xml'}
+
+    assert_equal 200, response.status
+    assert_equal Mime::XML, response.content_type
+
+    assert_equal 2, Hash.from_xml(response.body)['albums'].size
   end
 end
