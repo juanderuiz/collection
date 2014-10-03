@@ -9,9 +9,26 @@ class AlbumsController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def create
+    album = @band.albums.new(album_params)
+    #@shoe = @runner.shoes.new(shoe_params) 
+    if album.save
+      render json: album, status: 201#, location: album
+    else
+      render json: album.errors, status: 422
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def get_band
       @band = Band.find(params[:band_id])
+    end
+
+    def album_params
+      params.require(:album).permit(:title, :band_id)
     end
 end
