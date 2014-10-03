@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
   before_action :get_band
 
   def index
@@ -20,6 +21,12 @@ class AlbumsController < ApplicationController
     else
       render json: album.errors, status: 422
     end
+  end
+
+  def destroy
+    album = @band.albums.find(params[:id])
+    album.destroy!
+    render nothing: true, status: 204
   end
 
   private

@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  skip_before_filter  :verify_authenticity_token
+
   def index
   	bands = Band.all
   	render json: bands, status: 200
