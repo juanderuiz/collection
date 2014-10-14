@@ -17,7 +17,7 @@ class AlbumsController < ApplicationController
     album = @band.albums.new(album_params)
     #@shoe = @runner.shoes.new(shoe_params) 
     if album.save
-      render json: album, status: 201#, location: album
+      render json: album, status: 201, location: url_for([@band, album])
     else
       render json: album.errors, status: 422
     end
