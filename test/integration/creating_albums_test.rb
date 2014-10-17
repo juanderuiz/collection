@@ -15,7 +15,7 @@ class CreatingAlbumsTest < ActionDispatch::IntegrationTest
     album = json(response.body)
     assert_equal 'Si bajo de espalda no me da miedo', album[:title]
     assert_equal 5, album[:band_id]
-    #assert_equal album_url(album[:id]), response.location
+    assert_equal 'http://www.example.com/bands/5/albums/1', response.location
   end
 
   test "does not create an album with invalid data" do 
