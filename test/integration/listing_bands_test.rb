@@ -12,7 +12,8 @@ class ListingBandsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type
 
-    assert_equal Band.count, json(response.body).size
+    #debugger
+    assert_equal Band.count, json(response.body)[:bands].size
   end
 
   test 'showing a band' do
@@ -21,7 +22,7 @@ class ListingBandsTest < ActionDispatch::IntegrationTest
     assert_equal 200, response.status
     #assert_equal Mime::JSON, response.content_type
 
-    band_response = JSON.parse(response.body, symbolize_names: true)
+    band_response = JSON.parse(response.body, symbolize_names: true)[:band]
     assert_equal @band1.name, band_response[:name]
   end
 end

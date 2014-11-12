@@ -12,7 +12,7 @@ class CreatingAlbumsTest < ActionDispatch::IntegrationTest
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
 
-    album = json(response.body)
+    album = json(response.body)[:album]
     assert_equal 'Si bajo de espalda no me da miedo', album[:title]
     assert_equal 5, album[:band_id]
     assert_equal 'http://www.example.com/bands/5/albums/1', response.location

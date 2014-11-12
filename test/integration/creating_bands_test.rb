@@ -11,7 +11,7 @@ class CreatingBandsTest < ActionDispatch::IntegrationTest
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type 
 
-    band = json(response.body)
+    band = json(response.body)[:band]
     assert_equal band_url(band[:id]), response.location
     #band_url es un método que te da la url de un id
     assert_equal 'Radiohead', band[:name]
