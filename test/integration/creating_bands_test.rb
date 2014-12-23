@@ -15,6 +15,7 @@ class CreatingBandsTest < ActionDispatch::IntegrationTest
     assert_equal band_url(band[:id]), response.location
     #band_url es un método que te da la url de un id
     assert_equal 'Radiohead', band[:name]
+    assert_equal 0, band[:total]
   end
 
   test 'does not create a band with invalid data' do 

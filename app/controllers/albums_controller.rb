@@ -15,8 +15,8 @@ class AlbumsController < ApplicationController
 
   def create
     album = @band.albums.new(album_params)
-    #@shoe = @runner.shoes.new(shoe_params) 
     if album.save
+      @band.increaseTotal
       render json: album, status: 201, location: url_for([@band, album])
     else
       render json: album.errors, status: 422
@@ -26,6 +26,7 @@ class AlbumsController < ApplicationController
   def destroy
     album = @band.albums.find(params[:id])
     album.destroy!
+    @band.decreaseTotal
     render nothing: true, status: 204
   end
 
