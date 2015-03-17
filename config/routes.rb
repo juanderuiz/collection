@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :bands, only: [:index, :show, :create, :destroy] do
-    resources :albums, only: [:index, :show, :create, :destroy]
+ 
+  root "application#index"
+  namespace :api, defaults: {format: :json} do
+  	namespace :v1 do
+      resources :bands, only: [:index, :show, :create, :destroy] do
+        resources :albums, only: [:index, :show, :create, :destroy]
+      end
+    end
   end
 end
