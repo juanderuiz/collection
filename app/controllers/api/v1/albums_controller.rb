@@ -4,6 +4,10 @@ module Api
       skip_before_filter  :verify_authenticity_token
       before_action :get_band, except: [:allalbums]
 
+      def default_serializer_options
+        {root: false}
+      end
+
       def index
       	albums = @band.albums
         respond_to do |format|
