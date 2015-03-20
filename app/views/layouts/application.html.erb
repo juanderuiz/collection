@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
 <head>
   <title>Collection</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css" />
 </head>
-<body>
+<body ng-controller="MainCtrl">
+  <h3>Layout Principal de Rails</h3>
+  <%= yield %>
 
-<%= yield %>
-
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </body>
 </html>
