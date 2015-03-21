@@ -1,0 +1,62 @@
+<h2>Plantila del index de Angular</h2>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-md-6 col-md-offset-3 lead">
+      <h1>Vynil Collection v0.1</h1>
+	</div>
+  </div>
+</div>
+<!-- Inicio Main Content -->
+<!-- Inicio Index Vinilos -->
+<div class="container-fluid">
+  <div class="row">
+    <!-- MAIN BOX -->
+    <div class="col-md-9 main">
+      <div id="fullcollection" ng-if="fullCollection">
+		  <ul class="list-unstyled">
+		    <h4>Colección Completa</h4>
+		    <li ng-repeat='vinilo in vinilos' class="col-md-3">
+		      <h4>{{vinilo.title}}</h4>
+		      <i class="glyphicon glyphicon-cd"></i>
+		    </li>
+		  </ul>
+	  </div>
+	  <div id="selectedband" ng-if="currentBand">
+		  <ul class="list-unstyled">
+		    <h4>Discos de {{currentBand.name}} </h4>
+		    <li ng-repeat='disco in discos' class="col-md-3">
+		      <i class="glyphicon glyphicon-cd"></i>
+		      <p>{{disco.title}}</p>
+		      <button type="button" class="btn btn-link" ng-click="startEditing()"><span class="glyphicon glyphicon-pencil"></span></button>
+		    </li>
+		  </ul>
+	  </div>
+	  <div ng-if="shouldShowCreating()">
+	    <button type="button" class="btn btn-link" ng-click="startCreating()">
+	      <span class="glyphicon glyphicon-plus"></span> 
+	      Create album
+	    </button>
+	    <div ng-if="isCreating">
+	      Formulario para nuevo album!
+	      <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
+	    </div>	
+	  </div>
+	  <div ng-if="shouldShowEditing()">
+	    Edit an album!
+	    <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
+	  </div>
+	</div>
+	<!-- END MAIN BOX -->
+	<!-- SIDEBAR SHOWING BANDS -->
+	<div class="col-md-2 col-md-offset-1 sidebar">
+	  <ul class="nav nav-sidebar list-unstyled">
+	    <p>Bandas {{totalBandas}}</p>
+	      <li ng-click="setFullCollection()">All Albums</li>
+	      <li ng-repeat='band in bands' ng-click="setCurrentBand(band);selectAlbums(band.id)">
+	        <h4>{{band.name}}</h4>
+	      </li>
+	  </ul>
+	</div>
+	<!-- END SIDEBAR -->
+  </div>
+</div>

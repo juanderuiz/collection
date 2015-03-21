@@ -1,0 +1,19 @@
+body {
+  background-color: #000;
+}
+
+#fullcollection, #selectedband{
+	
+}
+
+.features .glyphicon{
+  font-size: 52px;
+  color: #000;
+}
+
+#albums, #sidebar, #botones{
+}
+
+.activo{
+  color:#337ab7;
+}
