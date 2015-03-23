@@ -19,16 +19,11 @@ module Api
       def show
       end
 
-      def allalbums
-        albums = Album.all
-        render json: albums, status: 200
-      end
-
       def create
         album = @band.albums.new(album_params)
         if album.save
           @band.increaseTotal
-          render json: album, status: 201, location: url_for([@band, album])
+          render json: album, status: 201 #, location: url_for([@band, album])
         else
           render json: album.errors, status: 422
         end
