@@ -1,11 +1,16 @@
-<h2>Plantila del index de Angular</h2>
-<div class="container">
-  <div class="row text-center">
-    <div class="col-md-6 col-md-offset-3 lead">
-      <h1>Vynil Collection v0.1</h1>
+<div class="navbar navbar-inverse">
+	<div class="container">
+	  <a href="/" class="navbar-brand">
+	    Vynil Collection v0.1
+	  </a>
+	  <ul class='nav nav-pills navbar-right'>
+	    <li><a href='/'>Colección</a></li>
+	    <li><a href='/'>Bandas</a></li>
+	    <li><a href='/'>Lista de deseos</a></li>
+	  </ul>
 	</div>
-  </div>
 </div>
+
 <!-- Inicio Main Content -->
 <!-- Inicio Index Vinilos -->
 <div class="container-fluid">
@@ -24,10 +29,12 @@
 	  <div id="selectedband" ng-if="currentBand">
 		  <ul class="list-unstyled">
 		    <h4>{{currentBand.name}} </h4>
-		    <li ng-repeat='disco in discos' class="col-md-3">
+		    <li ng-repeat='disco in discos' class="col-md-3 text-center">
 		      <i class="glyphicon glyphicon-cd"></i>
-		      <p>{{disco.title}}</p>
-		      <button type="button" class="btn btn-link" ng-click="startEditing()"><span class="glyphicon glyphicon-pencil"></span></button>
+		      <div>
+			      <button type="button" class="btn btn-link" ng-click="setEditedAlbum(disco);startEditing();"><span class="glyphicon glyphicon-pencil"></span></button>
+			      <p>{{disco.title}}</p>
+			  </div>
 		    </li>
 		  </ul>
 	  </div>
@@ -53,8 +60,20 @@
 	  </div>
 	  <!-- Editing -->
 	  <div ng-if="shouldShowEditing()">
-	    Edit an album!
-	    <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
+	    <h4>Editing {{editedAlbum.title}}</h4>
+	    <form class="edit-form" ng-show="isEditing" role="form" ng-submit="editAlbum(editedAlbum)" novalidate>
+			<div class="form-group">
+				<label>Album Title</label>
+				<input type="text" class="form-control" ng-model="editedAlbum.title" placeholder="Enter title">
+				
+			</div>
+			<!--<div class="form-group">
+				<label>Album URL</label>
+				<input type="text" class="form-control" ng-model="editedAlbum.url" placeholder="Enter URL">
+			</div>-->
+			<button type="submit" class="btn btn-info btn-lg">Save</button>
+			<button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
+		</form>	
 	  </div>
 	</div>
 	<!-- END MAIN BOX -->

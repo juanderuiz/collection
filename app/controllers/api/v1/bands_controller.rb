@@ -26,6 +26,9 @@ module Api
       	end
       end
 
+      def update
+      end
+
       def destroy
       	band = Band.find(params[:id])
       	band.destroy!

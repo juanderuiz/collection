@@ -2,7 +2,7 @@ module Api
   module V1
     class AlbumsController < ApplicationController
       skip_before_filter  :verify_authenticity_token
-      before_action :get_band, except: [:allalbums]
+      before_action :get_band
 
       def default_serializer_options
         {root: false}
@@ -24,6 +24,16 @@ module Api
         if album.save
           @band.increaseTotal
           render json: album, status: 201 #, location: url_for([@band, album])
+        else
+          render json: album.errors, status: 422
+        end
+      end
+
+      def update
+        album = @band.albums.find(params[:id])
+        album.title = album_params[:title]
+        if album.save
+          render json: album, status: 200 #, location: url_for([@band, album])
         else
           render json: album.errors, status: 422
         end

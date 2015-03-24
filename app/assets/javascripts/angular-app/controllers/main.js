@@ -42,7 +42,6 @@ angular
     function createAlbum(newAlbum){
     	console.log("Trying to create a new album...");
     	newAlbum.band_id = $scope.currentBandId;
-    	//En el input hidden, newAlbum.band_id = $scope.currentBand.id;
     	Album.save({band_id: $scope.currentBandId}, newAlbum);
     	console.log("Creado!");
     	$scope.discos = Album.get({band_id: $scope.currentBandId});
@@ -61,6 +60,30 @@ angular
     }
 
     $scope.resetCreateForm = resetCreateForm;
+
+    $scope.editedAlbum = null;
+    $scope.editedAlbumId = null; //To use it in the editAlbum function
+
+    function setEditedAlbum(album){
+    	console.log("Editing album...");
+    	$scope.editedAlbum = angular.copy(album);
+    	$scope.editedAlbumId = album.id;
+    }
+
+    $scope.setEditedAlbum = setEditedAlbum;
+
+    function editAlbum(album){
+      console.log("Trying to edit your album...");
+      //newAlbum.band_id = $scope.currentBandId;
+      Album.update({band_id: $scope.currentBandId, id: $scope.editedAlbumId}, album);
+      console.log("Editado!");
+      $scope.discos = Album.get({band_id: $scope.currentBandId});
+      $scope.isEditing = false;
+      $scope.editedAlbum = null;
+      //resetCreateForm();
+    }
+
+    $scope.editAlbum = editAlbum;
 
     //CREATE AND EDIT
     $scope.isCreating = false;
@@ -94,11 +117,16 @@ angular
     	return $scope.isEditing && !$scope.isCreating;
     }
 
+    function activeAlbum(albumId){
+    	console.log("Activando...");
+    	return $scope.isEditing && albumId == $scope.editedAlbumId;
+    }
+
     $scope.startCreating = startCreating;
     $scope.startEditing = startEditing;
     $scope.cancelCreating = cancelCreating;
     $scope.cancelEditing = cancelEditing;
     $scope.shouldShowCreating = shouldShowCreating;
     $scope.shouldShowEditing = shouldShowEditing;
-
+    $scope.activeAlbum = activeAlbum;
   }]);
