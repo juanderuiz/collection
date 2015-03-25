@@ -85,6 +85,15 @@ angular
 
     $scope.editAlbum = editAlbum;
 
+    function deleteAlbum(id){
+    	console.log("Deleting album..." + id);
+    	Album.delete({band_id: $scope.currentBandId, id: id});
+    	console.log("Deleted!");
+    	$scope.discos = Album.get({band_id: $scope.currentBandId});
+    }
+
+    $scope.deleteAlbum = deleteAlbum;
+
     //CREATE AND EDIT
     $scope.isCreating = false;
     $scope.isEditing = false;
