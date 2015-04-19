@@ -46,6 +46,7 @@ angular
     	console.log("Creado!");
     	$scope.discos = Album.get({band_id: $scope.currentBandId});
     	resetCreateForm();
+        cancelCreating();
     	//Esto hay que pensarlo bien, viendo como coge la banda en controller
     	//de Rails... que lo coge de la url... eso se hace con el $resource?
     }
@@ -78,8 +79,9 @@ angular
       Album.update({band_id: $scope.currentBandId, id: $scope.editedAlbumId}, album);
       console.log("Editado!");
       $scope.discos = Album.get({band_id: $scope.currentBandId});
-      $scope.isEditing = false;
-      $scope.editedAlbum = null;
+      cancelEditing();
+      //$scope.isEditing = false;
+      //$scope.editedAlbum = null;
       //resetCreateForm();
     }
 
@@ -116,6 +118,7 @@ angular
 
     function cancelEditing(){
     	$scope.isEditing = false;
+        $scope.editedAlbum = null;
     }
 
     function shouldShowCreating(){

@@ -12,82 +12,11 @@
 </div>
 
 <!-- Inicio Main Content -->
-<!-- Inicio Index Vinilos -->
-<div class="container-fluid">
-  <div class="row">
-    <!-- MAIN BOX -->
-    <div class="col-md-9 main">
-      <div id="fullcollection" ng-if="fullCollection">
-		  <ul class="list-unstyled">
-		    <h4>Colección Completa</h4>
-		    <li ng-repeat='vinilo in vinilos' class="col-md-3">
-		      <h4>{{vinilo.title}}</h4>
-		      <i class="glyphicon glyphicon-cd"></i>
-		    </li>
-		  </ul>
-	  </div>
-	  <div id="selectedband" ng-if="currentBand">
-		  <ul class="list-unstyled">
-		    <h4>{{currentBand.name}} </h4>
-		    <li ng-repeat='disco in discos' class="col-md-3 text-center">
-		      <i class="glyphicon glyphicon-cd"></i>
-		      <div>
-			      <button type="button" class="btn btn-link" ng-click="setEditedAlbum(disco);startEditing();"><span class="glyphicon glyphicon-pencil"></span></button>
-			      <button type="button" class="btn btn-link" ng-click="deleteAlbum(disco.id)"><span class="glyphicon glyphicon-trash"></span></button>
-			      <p>{{disco.title}}</p>
-			  </div>
-		    </li>
-		  </ul>
-	  </div>
-	  <div ng-if="shouldShowCreating()">
-	    <button type="button" class="btn btn-link" ng-click="startCreating()">
-	      <span class="glyphicon glyphicon-plus"></span> 
-	      Create album
-	    </button>
-	    <form class="create-form" ng-show="isCreating" role="form" ng-submit="createAlbum(newAlbum)" novalidate>
-			<div class="form-group">
-				<label for="newAlbumTitle">Album Title</label>
-				<input type="text" class="form-control" id="newAlbumTitle" ng-model="newAlbum.title" placeholder="Enter title">
-				<!--<input type="hidden" class="form-control" id="newAlbumBandId" ng-model="
-				newAlbum.band_id" value="{{currentBand.id}}">-->
-			</div>
-			<!--<div class="form-group">
-				<label for="newAlbumURL">Album URL</label>
-				<input type="text" class="form-control" id="newAlbumURL" ng-model="newAlbum.url" placeholder="Enter URL">
-			</div>-->
-			<button type="submit" class="btn btn-info btn-lg">Create</button>
-			<button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
-		</form>	
-	  </div>
-	  <!-- Editing -->
-	  <div ng-if="shouldShowEditing()">
-	    <h4>Editing {{editedAlbum.title}}</h4>
-	    <form class="edit-form" ng-show="isEditing" role="form" ng-submit="editAlbum(editedAlbum)" novalidate>
-			<div class="form-group">
-				<label>Album Title</label>
-				<input type="text" class="form-control" ng-model="editedAlbum.title" placeholder="Enter title">
-				
-			</div>
-			<!--<div class="form-group">
-				<label>Album URL</label>
-				<input type="text" class="form-control" ng-model="editedAlbum.url" placeholder="Enter URL">
-			</div>-->
-			<button type="submit" class="btn btn-info btn-lg">Save</button>
-			<button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
-		</form>	
-	  </div>
-	</div>
-	<!-- END MAIN BOX -->
-	<!-- SIDEBAR SHOWING BANDS -->
-	<div class="col-md-2 col-md-offset-1 sidebar text-center">
-	  <ul class="nav nav-sidebar list-unstyled">
-	    <p>Bandas {{totalBandas}}</p>
-	      <li ng-click="setFullCollection()">All Albums</li>
-	      <li ng-repeat='band in bands' ng-click="setCurrentBand(band);selectAlbums(band.id)">
-	        <h4>{{band.name}}</h4>
-	      </li>
-	  </ul>
-	</div>
-	<!-- END SIDEBAR -->
-  </div>
+<div class="container-fluid" ng-view>
+  
+</div>
+
+<!-- Footer -->
+<div class="container-fluid text-center">
+  <h6>Created by <a href="http://github.com/juanderuiz">JuandeRuiz</a></h2>
 </div>
