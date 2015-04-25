@@ -8,7 +8,7 @@ module Api
       end
 
       def index
-      	vinilos = Album.all
+      	vinilos = Album.all.shuffle
         render json: vinilos, status: 200
       end
     end

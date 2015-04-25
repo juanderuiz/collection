@@ -8,7 +8,7 @@ module Api
       end
 
       def index
-      	bands = Band.all
+      	bands = Band.all.order(name: :asc)
         render json: bands, status: 200
       end
 

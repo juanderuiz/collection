@@ -2,13 +2,28 @@
     <!-- MAIN BOX -->
     <div class="col-md-9 main">
       <div id="fullcollection" ng-if="fullCollection">
-		  <ul class="list-unstyled">
+		<!--  <ul class="list-unstyled">
 		    <h4>Colección Completa</h4>
 		    <li ng-repeat='vinilo in vinilos' class="col-md-3">
 		      <h4>{{vinilo.title}}</h4>
 		      <i class="glyphicon glyphicon-cd"></i>
 		    </li>
-		  </ul>
+		  </ul>-->
+		  <h4>Colección Completa</h4>
+		  <table class="table table-hover">
+		    <tr class="text-center">
+		      <th class="text-center">Album</th>
+		      <th class="text-center">Best song</th>
+		      <th class="text-center">Press Review</th>
+		      <th class="text-center">Buy Online</th>
+            </tr>
+            <tr class="text-center" ng-repeat='vinilo in vinilos'>
+              <td>{{vinilo.title}}</td>
+              <td>My favourite song</td>
+              <td class="info"><a href="http://www.pitchfork.com">Link</a></td>
+              <td class="active"><a href="http://www.pitchfork.com">Buy</a></td>
+            </tr>
+		  </table>
 	  </div>
 	  <div id="selectedband" ng-if="currentBand">
 		  <ul class="list-unstyled">
