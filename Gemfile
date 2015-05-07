@@ -5,6 +5,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 # Angular Setup
 gem 'bower-rails'
+#Authentication gems
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'uuidtools'
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'
