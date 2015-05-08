@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :validatable, :omniauthable
   has_many :authorizations, :dependent => :destroy
+  has_many :albums, foreign_key: 'user_id', :dependent => :destroy
   
 end
