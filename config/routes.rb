@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  devise_scope :user do
+    get '/api/current_user' => 'users/sessions#show_current_user'
+  end
  
   devise_for :users,
         :controllers => {
