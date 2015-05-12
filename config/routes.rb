@@ -4,7 +4,10 @@ Rails.application.routes.draw do
         :controllers => {
           :omniauth_callbacks => "users/omniauth_callbacks"
         }
-  root "application#index"
+
+  get '/dashboard' => 'welcome#dashboard'
+  root to: 'welcome#index'
+
   namespace :api, defaults: {format: :json} do
   	namespace :v1 do
   	  resources :vinilos, only: [:index]
